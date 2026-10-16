@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChequeredSeam } from "../common/ChequeredSeam";
 import {
   PLATE_OUTLINE,
   PLATE_CLIP,

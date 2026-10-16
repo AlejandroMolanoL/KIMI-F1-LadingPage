@@ -1,0 +1,423 @@
+/* SECTION 4: FROM THE PADDOCK */
+[data-paddock] {
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  min-height: var(--block-h, 100lvh);
+  width: 100%;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  [data-paddock] {
+    --type-min: 13px;
+    --copy-min-size: 17px;
+    --stats-row-min: 42px;
+    --fig-cap: 118.75cqw;
+    --fig-x-override: 65.7%;
+    --cta-h: 50px;
+    --band-scale: 1.75;
+    --cal-spread: 1.75;
+    --cal-mark-drop: 8cqw;
+    --cal-card-drop: 1.3cqw;
+    --panel-u: 1px;
+    --stats-rule-top: 16px;
+    --stats-rule-bottom: 11px;
+    --stats-frame-drop: 0px;
+    --stats-drop: 2.86cqw;
+    --stats-col-w: 170px;
+    --intro-min-w: 280px;
+  }
+}
+
+@media (max-width: 639px) {
+  [data-paddock] {
+    --block-h: 1062px;
+    --intro-bottom: 139px;
+    --head-top: 24px;
+    --intro-min-w: 320px;
+    --intro-gap: 24px;
+    --band-fade: 60px;
+    --cta-h: 50px;
+    --fig-cap: 599px;
+    --fig-x-override: 48.5%;
+    --fig-lift: 328px;
+    --band-scale: 8.48;
+    --cal-card-w: 100%;
+    --head-min: 40px;
+  }
+}
+
+.paddock-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.paddock-band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  height: 180px;
+  background: var(--surface-black);
+  z-index: 15;
+}
+
+.paddock-portrait {
+  position: absolute;
+  bottom: var(--fig-lift, 0px);
+  left: var(--fig-x-override, 65.6917%);
+  transform: translateX(-50%);
+  height: min(calc(102.0363% * var(--fig-fit, 1)), var(--fig-cap, 100000px));
+  width: auto;
+  aspect-ratio: 1.15881;
+  object-fit: cover;
+  user-select: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.paddock-fade-grad {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 180px;
+  z-index: 15;
+  height: 48px;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 10, 11, 0) 0%,
+    var(--surface-black) 100%
+  );
+  pointer-events: none;
+}
+
+.paddock-h2 {
+  position: absolute;
+  z-index: 20;
+  left: max(2.2222cqw, var(--head-left, 0px));
+  top: max(2.2222cqw, var(--head-top, 0px));
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--foreground);
+  font-size: max(max(6.6667cqw, var(--type-min, 0px)), var(--head-min, 0px));
+  display: flex;
+  flex-direction: column;
+}
+
+.paddock-intro-col {
+  position: absolute;
+  z-index: 20;
+  left: max(2.2222cqw, var(--intro-left, 0px));
+  bottom: var(--intro-bottom, calc(11.7361cqw * var(--band-scale, 1) + 2.2222cqw));
+  width: max(23.4722cqw, var(--intro-min-w, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--intro-gap, 2.7778cqw);
+}
+
+.paddock-report {
+  font-size: max(1.25cqw, var(--copy-min-size, 0px));
+  line-height: 1.1;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.22em;
+}
+
+@media (max-width: 639px) {
+  .paddock-report {
+    color: var(--foreground-on-dark);
+  }
+}
+
+.paddock-btn {
+  position: relative;
+  height: var(--cta-h, 3.4722cqw);
+  width: calc(var(--cta-h, 3.4722cqw) * 4.34);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.paddock-btn svg.paddock-btn-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.paddock-btn-flood {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 250ms var(--ease-plate);
+}
+
+.paddock-btn:hover .paddock-btn-flood {
+  transform: scaleX(1);
+}
+
+.paddock-btn-content {
+  position: absolute;
+  inset-y: 0;
+  left: calc(var(--cta-h, 3.4722cqw) * 24 / 50);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--cta-h, 3.4722cqw) * 32 / 50);
+  font-size: calc(var(--cta-h, 3.4722cqw) * 20 / 50);
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--accent);
+  transition: color 250ms var(--ease-plate);
+}
+
+.paddock-btn:hover .paddock-btn-content {
+  color: var(--surface-black);
+}
+
+.paddock-btn-arrow {
+  width: calc(var(--cta-h, 3.4722cqw) * 13.71 / 50);
+  height: calc(var(--cta-h, 3.4722cqw) * 10.71 / 50);
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.5;
+  transition: stroke 250ms var(--ease-plate), transform 150ms var(--ease-entrance);
+}
+
+.paddock-btn:hover .paddock-btn-arrow {
+  stroke: var(--surface-black);
+  transform: translateX(0.25rem);
+}
+
+/* PADDOCK RIGHT PANELS */
+.paddock-panels {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@media (max-width: 639px) {
+  .paddock-panels {
+    display: none;
+  }
+}
+
+.paddock-panel-col {
+  pointer-events: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.paddock-meet {
+  right: max(2.2222cqw, var(--gutter-min, 0px));
+  top: 2.2222cqw;
+  width: 13.4028cqw;
+  padding: 0.75rem 0.875rem;
+}
+
+.paddock-stats-panel {
+  right: max(2.2222cqw, var(--gutter-min, 0px));
+  top: 9.5cqw;
+  width: 13.4028cqw;
+  padding: 0.75rem 0.875rem;
+}
+
+.paddock-stat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.6667cqw;
+  height: 4.0278cqw;
+}
+
+.paddock-stat-icon {
+  width: 2.1528cqw;
+  height: 2.1528cqw;
+  flex-shrink: 0;
+}
+
+.paddock-stat-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2cqw;
+}
+
+.paddock-stat-label {
+  font-size: 0.8333cqw;
+  text-transform: uppercase;
+  color: var(--foreground-muted);
+  letter-spacing: -0.04em;
+}
+
+.paddock-stat-num {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 2.6389cqw;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+  display: flex;
+}
+
+.paddock-stat-divider {
+  height: 1px;
+  background: var(--foreground-muted);
+  margin: 1.6667cqw 0 1.5972cqw;
+  transform-origin: left;
+}
+
+/* CALENDAR STRIP */
+.calendar-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  z-index: 20;
+  height: 180px;
+  pointer-events: none;
+}
+
+.calendar-strip * {
+  pointer-events: auto;
+}
+
+@media (max-width: 639px) {
+  .calendar-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1.5rem 4%;
+    gap: 0.75rem 1.25rem;
+    border-top: 1px solid rgb(255 255 255 / 0.15);
+    height: auto;
+    position: relative;
+  }
+}
+
+.calendar-connector {
+  position: absolute;
+  height: 1px;
+  top: 130px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--foreground-on-dark-muted) 0 6px,
+    transparent 6px 11px
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .calendar-connector {
+    display: none;
+  }
+}
+
+.calendar-card {
+  position: absolute;
+  top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  gap: 6px;
+  cursor: pointer;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .calendar-card {
+    position: relative;
+    top: auto;
+    left: auto !important;
+    width: 100% !important;
+    transform: none;
+  }
+}
+
+.cal-round {
+  font-size: 11px;
+  color: var(--foreground-on-dark-muted);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.cal-round.live {
+  color: var(--accent);
+}
+
+.cal-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  color: #ffffff;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.cal-date {
+  font-size: 12px;
+  color: var(--foreground-on-dark-muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.cal-date.live {
+  color: var(--accent);
+}
+
+.calendar-marker {
+  position: absolute;
+  top: 125px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .calendar-marker {
+    display: none;
+  }
+}
+
+.cal-live-pulse {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  pointer-events: none;
+}
+
+.cal-live-bracket {
+  position: absolute;
+  top: 24px;
+  height: 85px;
+  pointer-events: none;
+  transition: transform 250ms var(--ease-plate);
+}
+
+@media (max-width: 639px) {
+  .cal-live-bracket {
+    display: none;
+  }
+}

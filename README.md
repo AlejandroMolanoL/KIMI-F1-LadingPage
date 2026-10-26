@@ -2,6 +2,9 @@
 
 Sitio web oficial interactivo y de alto rendimiento dedicado al piloto de Fórmula 1 **Andrea Kimi Antonelli** (Mercedes-AMG Petronas F1 Team). Diseñado con una estética técnica de carreras (*telemetry-grade*), efectos de profundidad 3D mediante Three.js, transiciones continuas tipo *Sticky Stack*, visualizaciones procedurales de mapas de circuitos y tipografía de precisión.
 
+<img width="1878" height="929" alt="image" src="https://github.com/user-attachments/assets/4126ca0e-dc93-4e85-b822-e91aeed885a6" />
+
+
 ---
 
 ## 📋 Índice
